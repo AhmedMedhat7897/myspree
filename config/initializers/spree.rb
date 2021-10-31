@@ -29,3 +29,5 @@ end
 # Spree::Api::Dependencies.storefront_cart_serializer = 'MyRailsApp::CartSerializer'
 
 Spree.user_class = "Spree::User"
+# Spree::Api::Dependencies.storefront_product_serializer = 'MyProductSerializer'
+# Spree::Api::Dependencies.storefront_taxon_serializer = 'MyTaxonSerializer'

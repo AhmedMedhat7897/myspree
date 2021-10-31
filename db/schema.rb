@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_12_086271) do
+ActiveRecord::Schema.define(version: 2021_10_31_113960) do
 
   create_table "action_mailbox_inbound_emails", force: :cascade do |t|
     t.integer "status", default: 0, null: false
@@ -1304,6 +1304,27 @@ ActiveRecord::Schema.define(version: 2021_10_12_086271) do
     t.index ["sku"], name: "index_spree_variants_on_sku"
     t.index ["tax_category_id"], name: "index_spree_variants_on_tax_category_id"
     t.index ["track_inventory"], name: "index_spree_variants_on_track_inventory"
+  end
+
+  create_table "spree_wished_products", force: :cascade do |t|
+    t.integer "variant_id"
+    t.bigint "wishlist_id"
+    t.text "remark"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "quantity", default: 1, null: false
+  end
+
+  create_table "spree_wishlists", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "name"
+    t.string "access_hash"
+    t.boolean "is_private", default: true, null: false
+    t.boolean "is_default", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "is_default"], name: "index_spree_wishlists_on_user_id_and_is_default"
+    t.index ["user_id"], name: "index_spree_wishlists_on_user_id"
   end
 
   create_table "spree_zone_members", force: :cascade do |t|
